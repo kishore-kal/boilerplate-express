@@ -13,7 +13,11 @@ console.log(__dirname);
 // })
 
 app.use('/public',express.static(__dirname+'/public'));
-
+app.use(function(req,res,next){
+  console.log(req.path);
+  console.log(`${req.method} ${req.path} - ${req.ip}`);
+  next();
+})
 app.get('/',function(req,res){
   res.sendFile(absolutePath);
 });
@@ -27,6 +31,12 @@ app.get('/json',function(req,res){
     jsonObject.message = "Hello json";
   }
   res.json(jsonObject);
+})
+
+app.use(function(req,res,next){
+  console.log(req.path);
+  console.log(`${req.method} ${req.path} - ${req.ip}`);
+  next();
 })
 
 
