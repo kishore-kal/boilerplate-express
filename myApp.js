@@ -1,11 +1,11 @@
 const { json } = require('body-parser');
 var express = require('express');
-const dotenv = require('dotenv').config();
+//const dotenv = require('dotenv').config();
 var app = express();
 
 const absolutePath = __dirname + '/views/index.html';
 
-var jsonObject = {"message": "Hello json"};
+var jsonObject = {"message":"Hello json"};
 console.log('Hello World');
 console.log(__dirname);
 // app.get('/',function(req,res){
@@ -21,12 +21,13 @@ app.get('/',function(req,res){
 app.get('/json',function(req,res){
   if(process.env.MESSAGE_STYLE==='uppercase'){
     jsonObject.message = jsonObject.message.toUpperCase();
-    // console.log(jsonObject);
+    //console.log(jsonObject);
+  }
+  else{
+    jsonObject.message = "Hello json";
   }
   res.json(jsonObject);
 })
-
-
 
 
  module.exports = app;
