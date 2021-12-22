@@ -45,4 +45,24 @@ app.get('/now',function(req,res,next){
   res.json({time: req.time})
 })
 
+app.get('/:word/echo',(req,res)=>{
+  console.log(req.params.word);
+  res.json({echo: req.params.word});
+})
+
+app.route('/name')
+  .get((req,res,next)=>{
+    const firstname = req.query.first;
+    const lastname = req.query.last;
+    console.log(lastname);
+    res.json({
+      name: firstname + ' ' + lastname
+    });
+    next();
+  })
+  // .post((req,res)=>{
+  //   const firstname = req.query.first;
+  //   const lastname = req.query.last;
+  // });
+
  module.exports = app;
