@@ -56,15 +56,19 @@ app.route('/name')
   .get((req,res,next)=>{
     const firstname = req.query.first;
     const lastname = req.query.last;
-    console.log(lastname);
+    //console.log(lastname);
     res.json({
       name: firstname + ' ' + lastname
     });
     next();
   })
-  // .post((req,res)=>{
-  //   const firstname = req.query.first;
-  //   const lastname = req.query.last;
-  // });
+  .post((req,res,next)=>{
+    const firstname = req.body.first;
+    const lastname = req.body.last;
+
+    res.json({
+      name: firstname + ' ' + lastname
+    });
+  })
 
  module.exports = app;
