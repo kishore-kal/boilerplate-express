@@ -2,6 +2,7 @@ const { json } = require('body-parser');
 var express = require('express');
 //const dotenv = require('dotenv').config();
 var app = express();
+const bodyParser = require('body-parser');
 
 const absolutePath = __dirname + '/views/index.html';
 
@@ -36,7 +37,8 @@ app.get('/json',function(req,res){
 app.use(function(req,res,next){
   console.log(`${req.method} ${req.path} - ${req.ip}`);
   next();
-})
+},
+  bodyParser.urlencoded({extended: false}))
 
 app.get('/now',function(req,res,next){
   req.time = new Date().toString();
